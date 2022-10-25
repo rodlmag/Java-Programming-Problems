@@ -9,25 +9,27 @@ public class Kata {
     String finalStr = "";
     String [] arrStr = original.split(" ");
     
-    //Getting every String from the original
-    for(int i = 0; i < arrStr.length; i++){
-      String currStr = arrStr[i];
+    if(original.matches("[ ]{3,}")){
+      return original;
       
-      //Traversing the string backwards
-      for(int j = currStr.length() - 1; j >= 0; j--){
-        revStr += String.valueOf(currStr.charAt(j));
+    } else {
+      for(int i = 0; i < arrStr.length; i++){
+        String currStr = arrStr[i];
+        
+        for(int j = currStr.length() - 1; j >= 0; j--){
+          revStr += String.valueOf(currStr.charAt(j));
+          
+        }
+        if(i < arrStr.length - 1){
+          finalStr += revStr + " ";
+          
+        } else {
+          finalStr += revStr;
+          
+        }
+        revStr = "";
       }
-      
-      //Retaining the original spaces on the string
-      if(i < arrStr.length - 1){
-        finalStr += revStr + " ";
-      } else {
-        finalStr += revStr;
-      }
-      
-      //Cleaning the variable
-      revStr = "";
+      return finalStr;
     }
-    return finalStr;
   }
 }
